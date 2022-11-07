@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentManager
 import com.example.mytodolist.databinding.ActivityMainBinding
 import com.example.mytodolist.navigation.AccountFragment
 import com.example.mytodolist.navigation.CalendarFragment
+import com.example.mytodolist.navigation.CategoryFragment
 import com.example.mytodolist.navigation.HomeFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -23,6 +24,7 @@ class MainActivity : AppCompatActivity() {
     private val TAG_HOME = "home_fragment"
     private val TAG_CALENDAR = "calendar_fragment"
     private val TAG_ACCOUNT = "account_fragment"
+    private val TAG_CATEGORY = "category_fragment"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +46,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.home -> setFragment(TAG_HOME, HomeFragment())
                 R.id.calendar -> setFragment(TAG_CALENDAR, CalendarFragment())
                 R.id.account -> setFragment(TAG_ACCOUNT, AccountFragment())
+                R.id.category -> setFragment(TAG_CATEGORY, CategoryFragment())
             }
             true
         }
@@ -118,6 +121,7 @@ class MainActivity : AppCompatActivity() {
         val home = manager.findFragmentByTag(TAG_HOME)
         val calendar = manager.findFragmentByTag(TAG_CALENDAR)
         val account = manager.findFragmentByTag(TAG_ACCOUNT)
+        val category = manager.findFragmentByTag(TAG_CATEGORY)
 
         if (home != null) {
             bt.hide(home)
@@ -127,6 +131,9 @@ class MainActivity : AppCompatActivity() {
         }
         if (account != null) {
             bt.hide(account)
+        }
+        if (category != null) {
+            bt.hide(category)
         }
 
         if (tag == TAG_HOME) {
@@ -142,6 +149,11 @@ class MainActivity : AppCompatActivity() {
         else if (tag == TAG_ACCOUNT) {
             if (account != null) {
                 bt.show(account)
+            }
+        }
+        else if (tag == TAG_CATEGORY) {
+            if (category != null) {
+                bt.show(category)
             }
         }
         bt.commitAllowingStateLoss()
